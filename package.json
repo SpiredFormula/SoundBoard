@@ -1,0 +1,14 @@
+{
+  "name": "soundboard",
+  "version": "1.0.0",
+  "description": "A SoundBoard",
+  "main": "./js/app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "SpiredFormula",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^20.1.0"
+  }
+}

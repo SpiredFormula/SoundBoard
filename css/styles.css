@@ -1,0 +1,45 @@
+body{
+  background-color: rgb(34, 34, 40);
+  color:white;
+}
+.dropdown{
+  display: inline;
+  margin-right: 300px;
+}
+#SoundButtons button{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+#SoundButtons{
+  min-width: 1000px;
+}
+#dropdowns{
+  display: block;
+  margin-bottom: 200px;
+  min-width: 840px;
+}
+.dropbtn {
+  cursor: pointer;
+  box-shadow: none;
+  color:white;
+  background-color: black;
+  border: 1px;
+  border-color: black;
+  display:inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+
+}
+
+.show {
+  display:inline-block;
+  width:200px;
+  text-align: center;
+}
+
