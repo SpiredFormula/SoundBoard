@@ -4,6 +4,9 @@ body{
 }
 .dropdown{
   display: inline;
+
+}
+.drop1 {
   margin-right: 300px;
 }
 #SoundButtons button{
@@ -14,12 +17,12 @@ body{
   text-align: center;
 }
 #SoundButtons{
-  min-width:500px;
+  min-width:630px;
 }
 #dropdowns{
   display: block;
   margin-bottom: 200px;
-  min-width: 840px;
+  min-width: 600px;
 }
 .dropbtn {
   cursor: pointer;
