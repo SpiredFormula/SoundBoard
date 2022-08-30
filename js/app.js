@@ -10,6 +10,7 @@ const createWindow = () => {
       nodeIntegration: true
     },
   });
+  mainWindow.setMenu(null)
   const ret = globalShortcut.register("CommandOrControl+1", () => {
     mainWindow.webContents.send('PlaySound', "./Sounds/vine boom.mp3")
   });
