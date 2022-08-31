@@ -1,7 +1,10 @@
+
+
 let Number = 0;
 let PlayBackDevice = 0;
 let plays = 0;
 let Mute = false;
+let Files;
 function PlaySound(sound, DeviceNumber, PlayBackDevice) {
   if (plays === 0) {
     document.getElementById("sounds").innerHTML = "";
@@ -144,27 +147,12 @@ document.getElementById("dropdownbut").addEventListener("click", () => {
 document.getElementById("dropdown2but").addEventListener("click", () => {
   dropdown2();
 });
-document.getElementById("vineboom").addEventListener("click", () => {
-  PlaySound("./Sounds/vine boom.mp3", Number, PlayBackDevice);
-});
-document.getElementById("AMONGuS").addEventListener("click", () => {
-  PlaySound("./Sounds/AMONG US.mp3", Number, PlayBackDevice);
-});
-document.getElementById("fart").addEventListener("click", () => {
-  PlaySound("./Sounds/fart.mp3", Number, PlayBackDevice);
-});
-document.getElementById("AGHHHH").addEventListener("click", () => {
-  PlaySound("./Sounds/AGHHHHHHH.mp3", Number, PlayBackDevice);
-});
-document.getElementById("BRAIN").addEventListener("click", () => {
-  PlaySound("./Sounds/BRAIN FART.mp3", Number, PlayBackDevice);
-});
 Check();
 //Keybinds
-window.electronAPI.onUpdateCounter((_event, value) => {
-    PlaySound(value, Number, PlayBackDevice);
+window.electronAPI.Play((_event, value) => {
+  PlaySound(value, Number, PlayBackDevice);
+  console.log("Playing Sound")
 })
-
 let mute = () => {
   if (Mute === false){
     Mute = true
@@ -175,3 +163,9 @@ let mute = () => {
     document.getElementById("Mute").innerText = " - "
   }
 }
+fetch("./Json/Sounds.json")
+.then(response => response.json())
+.then(data => {
+  console.log(data.Sounds)
+})
+.catch(error => console.log(error));

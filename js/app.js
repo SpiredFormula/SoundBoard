@@ -1,6 +1,6 @@
-const { app, BrowserWindow, globalShortcut, ipcRenderer } = require("electron");
+const { app, BrowserWindow, globalShortcut, ipcRenderer, ipcMain } = require("electron");
 const path = require("path");
-
+const fs = require('fs');
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 840,
@@ -10,7 +10,7 @@ const createWindow = () => {
       nodeIntegration: true
     },
   });
-  mainWindow.setMenu(null)
+  //mainWindow.setMenu(null)
   const ret = globalShortcut.register("CommandOrControl+1", () => {
     mainWindow.webContents.send('PlaySound', "./Sounds/vine boom.mp3")
   });
@@ -26,10 +26,24 @@ const createWindow = () => {
   const ret5 = globalShortcut.register("CommandOrControl+5", () => {
     mainWindow.webContents.send('PlaySound', "./Sounds/BRAIN FART.mp3")
   });
+ 
+
   mainWindow.loadFile('index.html')
 };
-
+let GetFiles = () =>{
+  fs.readdir("./Sounds", function(err, files) {
+    fs.writeFile('./json/Sounds.json', ``, function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+    fs.appendFile('./json/Sounds.json', `{"Sounds":"${files}"}`, function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+  })
+}
 app.whenReady().then(() => {
+  GetFiles()
   createWindow();
 });
 
@@ -40,3 +54,7 @@ app.on("window-all-closed", () => {
 app.on("will-quit", () => {
   globalShortcut.unregisterAll();
 });
+
+
+
+
