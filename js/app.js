@@ -10,24 +10,23 @@ const createWindow = () => {
       nodeIntegration: true
     },
   });
+  function KeyBinds (event, key) {
+    console.log(key)
+    key = key.split(",")
+    sound = key[1]
+    key = key[0]
+    //globalShortcut.unregister(`${key}`)
+    globalShortcut.register(`${key}`, () => {
+      mainWindow.webContents.send("PlaySound",`./Sounds/${sound}`)
+    });
+    
+  }
+  let clearKeyBinds = (event, input) => {
+    globalShortcut.unregisterAll()
+  }
+  ipcMain.on('Key', KeyBinds)
+  ipcMain.on("clear", clearKeyBinds)
   //mainWindow.setMenu(null)
-  const ret = globalShortcut.register("CommandOrControl+1", () => {
-    mainWindow.webContents.send('PlaySound', "./Sounds/vine boom.mp3")
-  });
-  const ret2 = globalShortcut.register("CommandOrControl+2", () => {
-    mainWindow.webContents.send('PlaySound', "./Sounds/fart.mp3")
-  });
-  const ret3 = globalShortcut.register("CommandOrControl+3", () => {
-    mainWindow.webContents.send('PlaySound', "./Sounds/AGHHHHHHH.mp3")
-  });
-  const ret4 = globalShortcut.register("CommandOrControl+4", () => {
-    mainWindow.webContents.send('PlaySound', "./Sounds/AMONG US.mp3")
-  });
-  const ret5 = globalShortcut.register("CommandOrControl+5", () => {
-    mainWindow.webContents.send('PlaySound', "./Sounds/BRAIN FART.mp3")
-  });
- 
-
   mainWindow.loadFile('index.html')
 };
 let GetFiles = () =>{
