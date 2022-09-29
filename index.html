@@ -19,15 +19,14 @@
             <div id="Dropdown2" class="dropdown-content"></div>
         </div>
     </div>
+    <div id="KeyBinds"></div>
+    <button onclick="window.electronAPI.clear()"></button> 
     <h1>SoundBoard</h1>
-    <div id="SoundButtons"> 
-        <button onclick="PlaySound('./Sounds/vine boom.mp3', Number, PlayBackDevice);">Vine Boom</button>
-        <button onclick='PlaySound("./Sounds/fart.mp3", Number, PlayBackDevice);'>Fart</button>
-        <button onclick='PlaySound("./Sounds/AGHHHHHHH.mp3", Number, PlayBackDevice);'>AGHHHH</button>
-        <button onclick='PlaySound("./Sounds/AMONG US.mp3", Number, PlayBackDevice);'>AMONG US!!</button>
-        <button onclick='PlaySound("./Sounds/BRAIN FART.mp3", Number, PlayBackDevice);'>BRAIN FART!!</button>
+    <div id="SoundButtons">
     </div>
+    Title: <input id="title"/>
     <div id="sounds"></div> 
+    <button id="btn" type="button">Set</button>
 </body>
 <script src="./js/render.js"></script>
 </html>

@@ -75,6 +75,43 @@ let ChangeDevice = (number) => {
 let ChangeDefaultDevice = (number) => {
   PlayBackDevice = number;
 };
+let loadFiles = () => {
+  fetch('./Json/Sounds.json')
+  .then((response) => response.json())
+  .then((data) => {
+    let Sounds = data.Sounds
+    Sounds = Sounds.split(",")
+    console.log(Sounds.length) 
+    for (let i = 0; i < Sounds.length; i++){
+      let SoundButton = document.createElement("button")
+      SoundButton.addEventListener('click', () =>{
+        PlaySound(`./Sounds/${Sounds[i]}`, Number, PlayBackDevice)
+      })
+      SoundButton.innerText = `${Sounds[i]}`
+      document.getElementById("SoundButtons").appendChild(SoundButton)
+    }
+  })
+  .catch(error => console.log(error));
+}
+let LoadKeyBindSettings = () => {
+  fetch('./Json/Sounds.json')
+  .then((response) => response.json())
+  .then((data) => {
+    let Sounds = data.Sounds
+    Sounds = Sounds.split(",")
+    console.log(Sounds.length) 
+    for (let i = 0; i < Sounds.length; i++){
+      let SoundDiv = document.createElement("div")
+      SoundDiv.innerHTML = `${Sounds[i]} <input id='${Sounds[i]}'><button onclick="window.electronAPI.Key(document.getElementById('${Sounds[i]}').value + ',' + '${Sounds[i]}'); document.getElementById('${Sounds[i]}').value = '';">RegisterKey</button></input>`
+
+      document.getElementById("KeyBinds").appendChild(SoundDiv)
+    }
+  })
+  .catch(error => console.log(error));
+}
+loadFiles()
+LoadKeyBindSettings();
+
 // Find Devices
 navigator.mediaDevices
   .enumerateDevices()
@@ -140,7 +177,6 @@ window.onclick = function (event) {
     }
   }
 };
-// Sound Events get rid of this
 document.getElementById("dropdownbut").addEventListener("click", () => {
   dropdown();
 });
@@ -163,9 +199,9 @@ let mute = () => {
     document.getElementById("Mute").innerText = " - "
   }
 }
-fetch("./Json/Sounds.json")
-.then(response => response.json())
-.then(data => {
-  console.log(data.Sounds)
-})
-.catch(error => console.log(error));
+const setButton = document.getElementById('btn')
+const titleInput = document.getElementById('title')
+setButton.addEventListener('click', () => {
+    const key = titleInput.value
+    window.electronAPI.Key(key)
+});
