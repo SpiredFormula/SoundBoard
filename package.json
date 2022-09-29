@@ -16,7 +16,8 @@
     "electron-rebuild": "^3.2.9"
   },
   "dependencies": {
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.3.3",
+    "eletron": "^0.0.1-security"
   },
   "build": {
     "appId": "SoundBoard",
